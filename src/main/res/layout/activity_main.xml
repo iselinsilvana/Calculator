@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity"
-        android:background="@android:color/secondary_text_light_nodisable">
+        android:background="#ffffff">
 
     <include
         layout="@layout/calc_result"
