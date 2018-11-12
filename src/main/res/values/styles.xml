@@ -11,19 +11,19 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="FunctionalButtons">
+    <style name="FunctionalButtons" parent="Widget.AppCompat.Button">
         <item name="android:textSize">40sp</item>
-        <item name="android:minHeight">80dp</item>
         <item name="android:textColor">@color/colorFuncButtonTxt</item>
         <item name="android:background">@drawable/func_round_rectangle_buttons</item>
+        <item name="android:fontFamily">Sans-serif</item>
     </style>
 
 
-    <style name="NumericalButtons">
+    <style name="NumericalButtons" parent="Widget.AppCompat.Button">
         <item name="android:textSize">40sp</item>
-        <item name="android:minHeight">80dp</item>
         <item name="android:textColor">@color/colorNumButtonTxt</item>
         <item name="android:background">@drawable/num_round_rectangle_buttons</item>
+        <item name="android:fontFamily">Sans-serif</item>
     </style>
 
 </resources>
