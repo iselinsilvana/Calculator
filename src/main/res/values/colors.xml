@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- Functional Button Colours -->
+    <color name="colorFuncButtonBG">#3bb4d9</color>
+    <color name="colorFuncButtonTxt">#dadada</color>
+
+    <!-- Numerical Button Colours -->
+    <color name="colorNumButtonBG">#dadada</color>
+    <color name="colorNumButtonTxt">#3bb4d9</color>
+
+</resources>
