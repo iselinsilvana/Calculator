@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import kotlinx.android.synthetic.main.cal_buttons.*
 import kotlinx.android.synthetic.main.calc_result.*
-// import net.objecthunter.exp4j.ExpressionBuilder
+import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         buttonMultiply.setOnClickListener { addInputOperator("\u00D7") }
         buttonDivide.setOnClickListener { addInputOperator( "\u00F7") }
 
-        // buttonEqual.setOnClickListener { equal() }
+        buttonEqual.setOnClickListener { equal() }
 
 
     }
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         tv_userInput.text = resulting_input
         // vil sjekke om det er ein operator før, sånn at den blir bytta ut med den nye.
     }
-   /* fun equal () {
+    fun equal () {
         try{
             val expression = ExpressionBuilder (tv_userInput.text.toString()).build()
             val result = expression.evaluate()
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         }catch (e:Exception){
             Log.d( "Exception", "message : " + e.message )
         }
-    } */
+    }
 
     fun backspace () {
         val exsisting_input = tv_userInput.text.toString()
