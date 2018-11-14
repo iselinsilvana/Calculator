@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
-import kotlinx.android.synthetic.main.cal_buttons.*
 import kotlinx.android.synthetic.main.calc_result.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
@@ -60,51 +59,65 @@ class MainActivity : AppCompatActivity() {
         buttonLeft.setOnClickListener { addInput("(") }
         buttonRight.setOnClickListener { addInput(")") }
 
-        buttonPlus.setOnClickListener { addInputOperator("+") }
-        buttonMinus.setOnClickListener { addInputOperator("-") }
-        buttonMultiply.setOnClickListener { addInputOperator("\u00D7") }
-        buttonDivide.setOnClickListener { addInputOperator( "\u00F7") }
+        buttonPlus.setOnClickListener { addInput("+") }
+        buttonMinus.setOnClickListener { addInput("-") }
+        buttonMultiply.setOnClickListener { addInput("\u00D7") }
+        buttonDivide.setOnClickListener { addInput( "\u00F7") }
 
         buttonEqual.setOnClickListener { equal() }
 
 
     }
 
-/*    fun addInput ( v: String, canClear: Boolean ) {
-        if (canClear){
-            R.string.calc_result = ""
-            R.string.calc_input.append(v) = v.padEnd(length = 1)
-        } else {
-            R.string.calc_input.append(R.string.calc_result)
-            R.string.calc_input.append(v) = v.padEnd(length = 1)
-            R.string.calc_result.text = ""
-        }
-    }
-    */
 
 
+// Adding to the input, and checking that nothing invalid is being added
     fun addInput (v: String) {
+    if (tv_userResult.text.isNotEmpty()){
+        tv_userInput.text = tv_userResult.text
+        tv_userResult.text = ""
+    }
         val exsisting_input = tv_userInput.text
         val additional_input = v
-        val resulting_input = "$exsisting_input$additional_input"
-        tv_userInput.text = resulting_input
+        var resulting_input = ""
+        when(v) {
+            in "0", "+", "-", "÷", "×", ".", ")" ->{
+                if (exsisting_input.isNotEmpty()){
+                    resulting_input = "$exsisting_input$additional_input"
+                    tv_userInput.text = resulting_input}
+            }
+            in "+", "-", "÷", "×" -> {
+                val last_char = exsisting_input.takeLast(1)
+                when (last_char) {
+                     in "+", "-", "÷", "×" -> {
+                        resulting_input = exsisting_input.substring(0, exsisting_input.length - 1)
+                        resulting_input = "$exsisting_input$additional_input"
+                        tv_userInput.text = resulting_input
+                    }
+                }
+            }
+            in "." -> {
+                if (exsisting_input.contains( ".", true)) {
+                    resulting_input = "$exsisting_input$additional_input"
+                    tv_userInput.text = resulting_input
+                    }
+            }
+            else -> {
+                resulting_input = "$exsisting_input$additional_input"
+                tv_userInput.text = resulting_input} }
     }
 
-    fun addInputOperator (v: String) {
-        val exsisting_input = tv_userInput.text
-        val additional_input = v
-        val resulting_input = "$exsisting_input$additional_input"
-        tv_userInput.text = resulting_input
-        // vil sjekke om det er ein operator før, sånn at den blir bytta ut med den nye.
-    }
+    //Is using a 3rd party library to convert strings so that we can evaluate it.
     fun equal () {
+        tv_userResult.text = ""
         try{
-            val expression = ExpressionBuilder (tv_userInput.text.toString()).build()
+            val fix_operators = tv_userInput.text.toString().replace("\u00F7", "/").replace("\u00D7", "*")
+            val expression = ExpressionBuilder (fix_operators).build()
             val result = expression.evaluate()
             val longResult = result.toLong()
             if (result == longResult.toDouble())
-                tv_userResult.text = longResult.toString()
-            else tv_userResult.text = result.toString()
+                 tv_userResult.append(longResult.toString())
+            else tv_userResult.append(result.toString())
 
         }catch (e:Exception){
             Log.d( "Exception", "message : " + e.message )
@@ -116,11 +129,13 @@ class MainActivity : AppCompatActivity() {
         if (exsisting_input.isNotEmpty()){
             tv_userInput.text = exsisting_input.substring(0,exsisting_input.length-1)
         }
+        else {tv_userInput.text = " "}
+        tv_userResult.text = " "
     }
 
     fun clearAll () {
-        tv_userInput.text = ""
-        tv_userResult.text = ""
+        tv_userInput.text = " "
+        tv_userResult.text = " "
     }
 
 }
