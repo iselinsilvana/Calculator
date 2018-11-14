@@ -34,7 +34,7 @@
     />
     <ImageButton
             android:id="@+id/btn_Backspace"
-            android:src="@drawable/backspace_white_solid"
+            android:src="@drawable/backspace_no_background"
             style="@style/FunctionalButtons"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -120,14 +120,14 @@
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1">
     <Button
-            android:id="@+id/btn_one"
+            android:id="@+id/btn_One"
             android:text="1"
             style="@style/NumericalButtons"
             android:layout_height="match_parent"
             android:layout_weight="1"
     />
     <Button
-            android:id="@+id/btn_two"
+            android:id="@+id/btn_Two"
             android:text="2"
             style="@style/NumericalButtons"
             android:layout_height="match_parent"

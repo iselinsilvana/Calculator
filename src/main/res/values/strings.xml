@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Calculator</string>
-    <string name="calc_result"> 0 </string>
+   <!-- <string name="calc_result"> 0 </string>
 
-    <string name="calc_input"> 0 </string>
+    <string name="calc_input">  </string> -->
     <string name="btn_divide">\u00F7</string>
 </resources>
