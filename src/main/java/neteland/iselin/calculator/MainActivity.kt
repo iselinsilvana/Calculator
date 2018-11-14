@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
     fun addInput (v: String) {
     if (tv_userResult.text.isNotEmpty()){
         tv_userInput.text = tv_userResult.text
-        tv_userResult.text = ""
     }
         val exsisting_input = tv_userInput.text
         val additional_input = v
@@ -102,9 +101,20 @@ class MainActivity : AppCompatActivity() {
                     tv_userInput.text = resulting_input
                     }
             }
-            else -> {
+            in "(" -> {
                 resulting_input = "$exsisting_input$additional_input"
-                tv_userInput.text = resulting_input} }
+                tv_userInput.text = resulting_input
+            }
+            else -> {
+                if (tv_userResult.text.isNotEmpty()){
+                resulting_input = additional_input
+                tv_userInput.text = resulting_input}
+                else {resulting_input = "$exsisting_input$additional_input"
+                    tv_userInput.text = resulting_input}
+            }
+        }
+
+    tv_userResult.text = ""
     }
 
     //Is using a 3rd party library to convert strings so that we can evaluate it.
