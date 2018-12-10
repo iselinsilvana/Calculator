@@ -2,20 +2,33 @@ package neteland.iselin.calculator
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import kotlinx.android.synthetic.main.calc_result.*
 import net.objecthunter.exp4j.ExpressionBuilder
+import neteland.iselin.calculator.View.CalculatorFragment
+import neteland.iselin.calculator.dependencyinjection.Injector
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        val VIEW: String = "VIEW"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
+        val manager: FragmentManager = this.supportFragmentManager
+        val view = manager.findFragmentByTag(VIEW) as CalculatorFragment?
+            ?: CalculatorFragment.newInstance(Injector(this))
+
+        manager.beginTransaction().replace(R.id.root_activity_calculator, view).commit()
+/*
         val buttonOne: Button = findViewById<Button>(R.id.btn_One)
         val buttonTwo: Button = findViewById<Button>(R.id.btn_Two)
         val buttonThree: Button = findViewById<Button>(R.id.btn_Three)
@@ -66,11 +79,11 @@ class MainActivity : AppCompatActivity() {
 
         buttonEqual.setOnClickListener { equal() }
 
-
+*/
     }
 
 
-
+/*
 // Adding to the input, and checking that nothing invalid is being added
     fun addInput (v: String) {
     if (tv_userResult.text.isNotEmpty()){
@@ -147,5 +160,5 @@ class MainActivity : AppCompatActivity() {
         tv_userInput.text = " "
         tv_userResult.text = " "
     }
-
+*/
 }
