@@ -1,7 +1,13 @@
 # Calculator
 This is my calculator app for Android. I hope you like it!
+'Calculator' and 'Calculator2' should have been in the same project, but none of them wants to contain all the files. One project contains the files that the other is missing.
 
+VERSION 2:
+I tried to implement a clean architecture where everything is separated. Heavily inspired by this project https://github.com/BracketCove/KotlinMVPCalculator and the youtube videos that belong to it.
+This did not work perfectly for me, as the input and output is not working atm.
+I also did not implement a unit test. 
 
+VERSION 1:
 ----Description of my solution---- 
 
 The app consists of one activity, which is activity_main. This activity has two layouts, One for the display, where we can see the buttons we have pressed and the result, and one for the buttons. The button layout is a tablelayout. When a button is pressed, the string tv_userInput is expanded to include the symbol of the button, if it is a number or an operator. When the "="-button is pressed, the sstring is turned into an expression that can be evaluated. To do this, I included a third party library (https://www.objecthunter.net/exp4j/index.html#Tag_Library). A string is returned to tv_userResult.text, which will then be presented on the screen.
